@@ -22,14 +22,12 @@ class ProdutoController extends Controller
 
     public function store(Request $request)
     {
-        // Validação dos dados recebidos do formulário
         $request->validate([
             'nome' => 'required',
             'descricao' => 'required',
             'preco' => 'required|numeric',
         ]);
 
-        // Criação de um novo produto
         Produto::create($request->all());
 
         return redirect()->route('produtos.index')->with('success', 'Produto criado com sucesso!');
@@ -42,14 +40,12 @@ class ProdutoController extends Controller
 
     public function update(Request $request, Produto $produto)
     {
-        // Validação dos dados recebidos do formulário
         $request->validate([
             'nome' => 'required',
             'descricao' => 'required',
             'preco' => 'required|numeric',
         ]);
 
-        // Atualização do produto
         $produto->update($request->all());
 
         return redirect()->route('produtos.index')->with('success', 'Produto atualizado com sucesso!');
@@ -57,7 +53,6 @@ class ProdutoController extends Controller
 
     public function destroy(Produto $produto)
     {
-        // Exclusão do produto
         $produto->delete();
 
         return redirect()->route('produtos.index')->with('success', 'Produto excluído com sucesso!');

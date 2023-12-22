@@ -1,11 +1,17 @@
 <?php
 
+// app/Models/Produto.php
+
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Jenssegers\Mongodb\Eloquent\Model as Eloquent;
 
-class Produto extends Model
+class Produto extends Eloquent
 {
-    use HasFactory;
+    protected $connection = 'mongodb';
+    protected $collection = 'produtos';
+
+    protected $fillable = [
+        'nome', 'descricao', 'preco',
+    ];
 }
